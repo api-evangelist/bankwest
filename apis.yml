@@ -1,0 +1,71 @@
+aid: bankwest
+url: https://raw.githubusercontent.com/api-evangelist/bankwest/refs/heads/main/apis.yml
+name: Bankwest
+kind: company
+description: Bankwest is an Australian retail and business bank headquartered in Perth,
+  Western Australia. Founded in 1895 as the Agricultural Bank of Western Australia and
+  later the Bank of Western Australia, it has operated as a wholly owned subsidiary of
+  Commonwealth Bank of Australia (CBA) since CBA's December 2008 acquisition. In March
+  2024 Bankwest announced it would close its remaining branch network and become a
+  digital-only bank, retaining the Bankwest brand for personal and business customers
+  nationally. As an authorised deposit-taking institution brand operating under Australia's
+  Consumer Data Right (CDR / Open Banking) regime, Bankwest exposes a public,
+  unauthenticated Product Reference Data (PRD) API conforming to the Data Standards Body
+  Consumer Data Standards; consumer data sharing beyond PRD requires ACCC accreditation
+  and customer consent under the CDR authorisation model.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Financial
+- Banks
+- Open Banking
+- CDR
+- Consumer Banking
+- Australia
+- Product Reference Data
+- Digital Bank
+created: '2026-07-20'
+modified: '2026-07-20'
+specificationVersion: '0.19'
+apis:
+- aid: bankwest:bankwest-cdr-product-reference-data-api
+  name: Bankwest CDR Product Reference Data API
+  tags:
+  - CDR
+  - Open Banking
+  - Product Reference Data
+  - Banking
+  - Public API
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.bankwest.com.au/support/open-banking/developers
+  baseURL: https://open-api.bankwest.com.au/bwpublic/cds-au/v1/banking/products
+  properties:
+  - url: https://www.bankwest.com.au/support/open-banking/developers
+    type: Documentation
+  - url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-products
+    type: APIReference
+  - url: openapi/bankwest-cds-banking-products-openapi.yml
+    type: OpenAPI
+  description: Public, unauthenticated Product Reference Data (PRD) API returning the
+    features, rates, fees and eligibility for Bankwest's publicly offered banking products
+    (transaction and savings accounts, term deposits, credit cards, personal loans and
+    home loans). Confirmed live at HTTP 200 with x-v 5 returning 19 products. Conforms to
+    the DSB Consumer Data Standards CDS-AU/v1 banking schema; GET /banking/products and
+    GET /banking/products/{productId} require the x-v version header (v4 and v5 supported).
+common:
+- type: Website
+  url: https://www.bankwest.com.au/
+- type: DeveloperPortal
+  url: https://www.bankwest.com.au/support/open-banking/developers
+- type: Documentation
+  url: https://www.bankwest.com.au/support/open-banking
+- type: APIReference
+  url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-apis
+- type: LinkedIn
+  url: https://www.linkedin.com/company/bankwest
+- type: PrivacyPolicy
+  url: https://www.bankwest.com.au/legal-stuff/bankwest-privacy-statement
+- type: Support
+  url: https://www.bankwest.com.au/support
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

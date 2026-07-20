@@ -1,0 +1,79 @@
+aid: bankwest
+name: Bankwest
+review:
+  question: Does Bankwest expose a live public API, and if so what is its posture?
+  answer: true
+  date: '2026-07-20'
+  reviewer: API Evangelist
+findings:
+  summary: |
+    Bankwest exposes a live, public, unauthenticated Consumer Data Right (CDR)
+    Product Reference Data (PRD) API. The endpoint
+    https://open-api.bankwest.com.au/bwpublic/cds-au/v1/banking/products was
+    confirmed returning HTTP 200 with response header x-v: 5 and a JSON body
+    containing a data.products array (meta.totalRecords = 19 products across
+    transaction/savings accounts, term deposits, credit cards, personal loans
+    and home loans). Requesting an unsupported version (x-v: 3) correctly
+    returns HTTP 406 with a urn:au-cds:error:cds-all:Header/UnsupportedVersion
+    error; versions 4 and 5 are supported. This is a genuine bank-operated
+    public API surface, not a mock.
+
+    Bankwest does NOT run a self-service developer portal in the CommBank/NAB
+    or Up sense. Its "developers" page
+    (https://www.bankwest.com.au/support/open-banking/developers) is a thin
+    support page that publishes only the two PRD base URLs and links out to the
+    shared Data Standards Body (DSB) Consumer Data Standards reference. There is
+    no API console, no key issuance, no SDKs, and no official Bankwest GitHub
+    organisation (the github.com/bankwest account is an empty unrelated personal
+    user with zero repositories). As a wholly owned subsidiary of Commonwealth
+    Bank of Australia operating under CBA's ADI licence, Bankwest participates
+    in CDR as a distinct data-holder brand.
+
+    Spec provenance: no bank-proprietary OpenAPI is published. The harvested
+    spec (openapi/bankwest-cds-banking-products-openapi.yml) is the SHARED DSB
+    Consumer Data Standards "CDR Banking API" OpenAPI 3.0.3 document
+    (version 1.36.0), not a Bankwest-authored contract. Bankwest's PRD
+    implementation conforms to the /banking/products and
+    /banking/products/{productId} operations within it.
+  authModel:
+    productReferenceData: none (public, unauthenticated; only the x-v header is required)
+    consumerData: |
+      Consumer (customer-authorised) CDR data beyond PRD is not publicly
+      callable. Access requires ACCC accreditation as an Accredited Data
+      Recipient (ADR) and customer consent under the CDR authorisation model,
+      which uses OAuth 2.0 / OpenID Connect with FAPI security profiles and PAR
+      as mandated by the Consumer Data Standards. Bankwest does not document a
+      self-onboarding path for this on its public site.
+  cdrPrdConfirmed: true
+  cdrBaseURL: https://open-api.bankwest.com.au/bwpublic/cds-au/v1/banking/products
+  developerPortal: https://www.bankwest.com.au/support/open-banking/developers
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://open-api.bankwest.com.au/bwpublic/cds-au/v1/banking/products
+      documented: true
+      note: Public CDR Product Reference Data. Confirmed HTTP 200, x-v 5, 19 products.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No streaming or WebSocket surface is documented.
+  endpointsConfirmedRest:
+    - GET https://open-api.bankwest.com.au/bwpublic/cds-au/v1/banking/products
+    - GET https://open-api.bankwest.com.au/bwpublic/cds-au/v1/banking/products/{productId}
+sources:
+  - url: https://www.bankwest.com.au/support/open-banking/developers
+    type: Documentation
+    note: Bankwest's public open-banking developers page; publishes the two PRD base URLs.
+  - url: https://open-api.bankwest.com.au/bwpublic/cds-au/v1/banking/products
+    type: APIEndpoint
+    note: Live PRD endpoint. Confirmed HTTP 200 with x-v 5 and 19 products on 2026-07-20.
+  - url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-apis
+    type: APIReference
+    note: DSB Consumer Data Standards; the shared banking API reference Bankwest conforms to.
+  - url: https://consumerdatastandardsaustralia.github.io/standards/includes/swagger/cds_banking.json
+    type: OpenAPI
+    note: Source of the harvested spec — shared DSB CDR Banking API OpenAPI 3.0.3 v1.36.0, not bank-proprietary.
+actions:
+  openapiPath: openapi/bankwest-cds-banking-products-openapi.yml
+  openapiProvenance: DSB Consumer Data Standards (shared CDS standard), not a Bankwest-authored contract.
+  apisYmlUpdated: true
