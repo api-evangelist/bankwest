@@ -1,0 +1,26 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: openapi/bankwest-cds-banking-products-openapi.yml
+note: >-
+  Bankwest publishes no official MCP server. This is a candidate tool list derived
+  from the two public Product Reference Data operations Bankwest implements — safe
+  to expose to agents because both are read-only, unauthenticated GETs.
+server:
+  name: bankwest-cdr-products
+  transport: stdio
+  url: null
+tools:
+- name: list_banking_products
+  description: >-
+    List Bankwest's publicly offered banking products (transaction/savings
+    accounts, term deposits, credit cards, personal loans, home loans). Supports
+    effective / updated-since / brand / product-category filters and page
+    pagination. Requires the x-v version header (use 5).
+  source_operation: openapi/bankwest-cds-banking-products-openapi.yml#listBankingProducts
+- name: get_banking_product_detail
+  description: >-
+    Get full detail for a single product by productId — features, constraints,
+    eligibility, fees, deposit and lending rates. Requires the x-v version header
+    (use 7 for product detail).
+  source_operation: openapi/bankwest-cds-banking-products-openapi.yml#getBankingProductDetail

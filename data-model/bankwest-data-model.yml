@@ -1,0 +1,99 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/bankwest-cds-banking-products-openapi.yml
+note: >-
+  Entity-relationship graph for the CDR Banking Product surface Bankwest exposes,
+  derived from the CDS-AU product schemas ($ref composition). BankingProduct is the
+  root aggregate; BankingProductDetail (returned by getBankingProductDetail) is the
+  full product with nested collections, while the list endpoint returns the product
+  summary. No customer/account entities are reachable on the public PRD surface.
+entities:
+- name: BankingProduct
+  schema: BankingProductV6
+  id: productId
+  id_type: BankingProductId (ASCIIString)
+  detail_schema: BankingProductDetailV7
+  returned_by: [listBankingProducts, getBankingProductDetail]
+- name: BankingProductBundle
+  schema: BankingProductBundle
+- name: BankingProductFeature
+  schema: BankingProductFeatureV4
+- name: BankingProductConstraint
+  schema: BankingProductConstraintV3
+- name: BankingProductEligibility
+  schema: BankingProductEligibilityV2
+- name: BankingProductFee
+  schema: BankingProductFeeV2
+- name: BankingProductDiscount
+  schema: BankingProductDiscountV2
+- name: BankingProductDiscountEligibility
+  schema: BankingProductDiscountEligibility
+- name: BankingProductDepositRate
+  schema: BankingProductDepositRateV2
+- name: BankingProductLendingRate
+  schema: BankingProductLendingRateV3
+- name: BankingProductRateTier
+  schema: BankingProductRateTierV4
+- name: BankingProductRateCondition
+  schema: BankingProductRateConditionV2
+- name: BankingProductAdditionalInformation
+  schema: BankingProductAdditionalInformationV2
+- name: BankingProductCardArt
+  schema: BankingProductCardArt
+relationships:
+- from: BankingProduct
+  to: BankingProductCardArt
+  kind: has_many
+  via: cardArt
+- from: BankingProduct
+  to: BankingProductAdditionalInformation
+  kind: has_one
+  via: additionalInformation
+- from: BankingProductDetail
+  to: BankingProductBundle
+  kind: has_many
+  via: bundles
+- from: BankingProductDetail
+  to: BankingProductFeature
+  kind: has_many
+  via: features
+- from: BankingProductDetail
+  to: BankingProductConstraint
+  kind: has_many
+  via: constraints
+- from: BankingProductDetail
+  to: BankingProductEligibility
+  kind: has_many
+  via: eligibility
+- from: BankingProductDetail
+  to: BankingProductFee
+  kind: has_many
+  via: fees
+- from: BankingProductDetail
+  to: BankingProductDepositRate
+  kind: has_many
+  via: depositRates
+- from: BankingProductDetail
+  to: BankingProductLendingRate
+  kind: has_many
+  via: lendingRates
+- from: BankingProductFee
+  to: BankingProductDiscount
+  kind: has_many
+  via: discounts
+- from: BankingProductDiscount
+  to: BankingProductDiscountEligibility
+  kind: has_many
+  via: eligibility
+- from: BankingProductDepositRate
+  to: BankingProductRateTier
+  kind: has_many
+  via: tiers
+- from: BankingProductLendingRate
+  to: BankingProductRateTier
+  kind: has_many
+  via: tiers
+- from: BankingProductRateTier
+  to: BankingProductRateCondition
+  kind: has_many
+  via: applicabilityConditions

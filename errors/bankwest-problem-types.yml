@@ -1,0 +1,66 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/bankwest-cds-banking-products-openapi.yml
+docs: https://consumerdatastandardsaustralia.github.io/standards/#error-codes
+format: cds-au
+note: >-
+  The CDR Banking API does not use RFC 9457 application/problem+json. Errors are
+  returned in the Consumer Data Standards (CDS-AU) envelope: a top-level `errors`
+  array of {code, title, detail, meta}, where `code` is a
+  urn:au-cds:error:<sub-type>:<Category>/<Code> URN. Statuses and error sets below
+  are derived from the two product operations Bankwest implements
+  (listBankingProducts, getBankingProductDetail); URN codes and titles are the
+  standard CDS registry values these operations MUST support.
+envelope:
+  field: errors
+  item_shape: {code: urn, title: string, detail: string, meta: object}
+problems:
+- status: 400
+  code: urn:au-cds:error:cds-all:Field/Invalid
+  title: Invalid Field
+  source_operations: [listBankingProducts, getBankingProductDetail]
+- status: 400
+  code: urn:au-cds:error:cds-all:Field/Missing
+  title: Missing Required Field
+  source_operations: [listBankingProducts, getBankingProductDetail]
+- status: 400
+  code: urn:au-cds:error:cds-all:Header/Missing
+  title: Missing Required Header
+  detail: The required x-v version header was not supplied.
+  source_operations: [listBankingProducts, getBankingProductDetail]
+- status: 400
+  code: urn:au-cds:error:cds-all:Header/InvalidVersion
+  title: Invalid Version
+  detail: The x-v / x-min-v header value was not a positive integer.
+  source_operations: [listBankingProducts, getBankingProductDetail]
+- status: 400
+  code: urn:au-cds:error:cds-all:Field/InvalidDateTime
+  title: Invalid Date
+  detail: The updated-since query parameter was not a valid DateTimeString.
+  source_operations: [listBankingProducts]
+- status: 400
+  code: urn:au-cds:error:cds-all:Field/InvalidPageSize
+  title: Invalid Page Size
+  source_operations: [listBankingProducts]
+- status: 404
+  code: urn:au-cds:error:cds-all:Resource/NotFound
+  title: Unavailable Resource
+  detail: The requested productId does not exist or is not currently offered.
+  source_operations: [getBankingProductDetail]
+- status: 404
+  code: urn:au-cds:error:cds-all:Resource/Invalid
+  title: Invalid Resource
+  detail: The supplied productId is malformed.
+  source_operations: [getBankingProductDetail]
+- status: 406
+  code: urn:au-cds:error:cds-all:Header/UnsupportedVersion
+  title: Unsupported Version
+  detail: >-
+    None of the requested versions is supported. Confirmed live: requesting x-v 3
+    returns HTTP 406 with this code; versions 4 and 5 are supported.
+  source_operations: [listBankingProducts, getBankingProductDetail]
+- status: 422
+  code: urn:au-cds:error:cds-all:Field/InvalidPage
+  title: Invalid Page
+  detail: The requested page is out of range for the result set.
+  source_operations: [listBankingProducts]

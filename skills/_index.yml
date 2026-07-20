@@ -1,0 +1,12 @@
+generated: '2026-07-20'
+method: generated
+source: openapi/bankwest-cds-banking-products-openapi.yml
+skills:
+- file: bankwest-list-products.md
+  name: List Bankwest banking products
+  api: openapi/bankwest-cds-banking-products-openapi.yml
+  operations: [listBankingProducts]
+- file: bankwest-get-product-detail.md
+  name: Get Bankwest product detail
+  api: openapi/bankwest-cds-banking-products-openapi.yml
+  operations: [getBankingProductDetail]

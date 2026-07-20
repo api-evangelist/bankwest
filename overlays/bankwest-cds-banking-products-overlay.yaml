@@ -1,0 +1,28 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Bankwest CDR Product Reference Data API
+  version: 1.0.0
+extends: openapi/bankwest-cds-banking-products-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: Bankwest
+    x-apievangelist-note: >-
+      Harvested spec is the shared DSB Consumer Data Standards CDR Banking API
+      (v1.36.0). Bankwest implements only the two public Product Reference Data
+      operations below; all other operations require ACCC-accredited consumer
+      authorisation and are not publicly callable.
+    x-apievangelist-implemented-operations: [listBankingProducts, getBankingProductDetail]
+- target: $.servers
+  update:
+  - description: Bankwest public Product Reference Data (production)
+    url: https://open-api.bankwest.com.au/bwpublic/cds-au/v1
+- target: $.paths['/banking/products'].get
+  update:
+    x-apievangelist-status: live
+    x-apievangelist-verified: '2026-07-20'
+    x-apievangelist-note: Confirmed HTTP 200 with x-v 5 returning 19 products.
+- target: $.paths['/banking/products/{productId}'].get
+  update:
+    x-apievangelist-status: live
+    x-apievangelist-verified: '2026-07-20'

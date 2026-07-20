@@ -1,0 +1,41 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/bankwest-cds-banking-products-openapi.yml + review.yml
+docs: https://consumerdatastandardsaustralia.github.io/standards/
+standards:
+- id: cds-au-banking
+  name: Consumer Data Standards (CDS-AU) Banking API
+  conforms: true
+  evidence: >-
+    Live PRD endpoint returns the CDS-AU/v1 banking products schema
+    (ResponseBankingProductListV4 / ResponseBankingProductByIdV7); confirmed 200
+    with x-v 5 and 19 products.
+- id: cdr
+  name: Consumer Data Right (regulatory regime)
+  conforms: true
+  evidence: Bankwest is a CDR data-holder brand under CBA's ADI licence.
+- id: version-negotiation
+  name: CDS x-v/x-min-v HTTP version negotiation
+  conforms: true
+  evidence: x-v required; unsupported version returns HTTP 406 (confirmed live with x-v 3).
+- id: rfc4122-correlation
+  name: RFC 4122 UUID interaction correlation (x-fapi-interaction-id)
+  conforms: true
+  evidence: OpenAPI defines the x-fapi-interaction-id header per CDS.
+- id: fapi-2.0
+  name: FAPI 2.0 security profile (consumer data channel)
+  conforms: true
+  evidence: Mandated by CDS for the accredited consumer channel; not exercised on the public PRD surface.
+  scope: consumer-authorised data only (not publicly callable)
+- id: oauth2-oidc
+  name: OAuth 2.0 / OpenID Connect (consumer data channel)
+  conforms: true
+  scope: consumer-authorised data only (not publicly callable)
+- id: rfc9457-problem-details
+  name: RFC 9457 problem+json errors
+  conforms: false
+  evidence: Errors use the CDS-AU urn:au-cds:error envelope, not application/problem+json.
+- id: fhir-r4
+  conforms: false
+- id: json-api
+  conforms: false

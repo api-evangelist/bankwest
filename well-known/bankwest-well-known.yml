@@ -1,0 +1,34 @@
+generated: '2026-07-20'
+method: probed
+source: live probe of /.well-known/* on the API and website hosts
+note: >-
+  No .well-known discovery documents are published. The API host WAF-blocks all
+  /.well-known/* paths with HTTP 403 (generic block page, not a document); the
+  website returns HTTP 404. Product Reference Data is public and unauthenticated,
+  so there is no OIDC/OAuth discovery surface on the public host — consumer CDR
+  authorisation runs on the accredited (ACCC) channel, not this public endpoint.
+hosts:
+- host: https://open-api.bankwest.com.au
+  documents:
+  - path: /.well-known/security.txt
+    status: 403
+  - path: /.well-known/openid-configuration
+    status: 403
+  - path: /.well-known/oauth-authorization-server
+    status: 403
+  - path: /.well-known/api-catalog
+    status: 403
+  - path: /.well-known/ai-plugin.json
+    status: 403
+- host: https://www.bankwest.com.au
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404

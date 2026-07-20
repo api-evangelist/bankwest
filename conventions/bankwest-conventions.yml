@@ -1,0 +1,55 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/bankwest-cds-banking-products-openapi.yml
+docs: https://consumerdatastandardsaustralia.github.io/standards/#http-headers
+note: >-
+  Cross-cutting request/response semantics for Bankwest's public CDR Product
+  Reference Data API, derived from the DSB Consumer Data Standards banking schema
+  and confirmed against the live endpoint. The public PRD surface is read-only
+  (GET), unauthenticated, and does not support idempotency keys or webhooks.
+authentication:
+  style: none
+  detail: >-
+    Product Reference Data is public and unauthenticated. Consumer (customer)
+    data beyond PRD requires ACCC accreditation and OAuth 2.0 / OpenID Connect
+    with FAPI 2.0 + PAR on the accredited channel — see authentication/.
+versioning:
+  style: header
+  request_header: x-v
+  min_header: x-min-v
+  response_header: x-v
+  supported: ['4', '5']
+  detail: >-
+    Clients send the required x-v header (and optional x-min-v floor); the server
+    responds with the negotiated payload version in the x-v response header. An
+    unsupported version returns HTTP 406 (Header/UnsupportedVersion).
+pagination:
+  style: page-number
+  request_params: [page, page-size]
+  defaults: {page: 1, page-size: 25}
+  response_fields:
+    links: [self, first, prev, next, last]
+    meta: [totalRecords, totalPages]
+  applies_to: [listBankingProducts]
+request_tracing:
+  header: x-fapi-interaction-id
+  detail: >-
+    RFC 4122 UUID correlation id. If the client supplies it the data holder MUST
+    echo it in the x-fapi-interaction-id response header; otherwise the holder
+    generates one. Optional/absent for unauthenticated PRD calls.
+filtering:
+  listBankingProducts: [effective, updated-since, brand, product-category]
+error_envelope:
+  format: cds-au
+  field: errors
+  detail: See errors/bankwest-problem-types.yml. Not RFC 9457 problem+json.
+idempotency:
+  supported: false
+  detail: The public PRD surface is GET-only; no write operations and no idempotency-key contract.
+rate_limiting:
+  documented: false
+  detail: No rate-limit headers or published quota for the public PRD endpoint.
+cross_links:
+  errors: errors/bankwest-problem-types.yml
+  lifecycle: lifecycle/bankwest-lifecycle.yml
+  authentication: authentication/bankwest-authentication.yml

@@ -1,0 +1,29 @@
+generated: '2026-07-20'
+method: searched
+source: https://www.bankwest.com.au/support/open-banking/developers
+docs: https://consumerdatastandardsaustralia.github.io/standards/#security-profile
+note: >-
+  The harvested OpenAPI declares no securitySchemes because the Product Reference
+  Data (PRD) endpoints are public. This profile is authored from Bankwest's
+  developer page and the DSB Consumer Data Standards security profile.
+summary:
+  types: [none, oauth2, openIdConnect]
+  public_surface: none
+  consumer_surface: oauth2 + openIdConnect (FAPI 2.0)
+schemes:
+- name: publicPRD
+  type: none
+  applies_to: [listBankingProducts, getBankingProductDetail]
+  detail: >-
+    Product APIs are publicly available; no authentication is required. Only the
+    mandatory x-v version header must be supplied. Confirmed live (HTTP 200).
+- name: cdrConsumerAuthorisation
+  type: openIdConnect
+  applies_to: []
+  publicly_callable: false
+  detail: >-
+    Access to consumer (customer-authorised) CDR data beyond PRD is NOT publicly
+    callable. It requires ACCC accreditation as an Accredited Data Recipient and
+    customer consent, using OAuth 2.0 / OpenID Connect under the FAPI 2.0 security
+    profile with Pushed Authorization Requests (PAR) as mandated by the Consumer
+    Data Standards. Bankwest publishes no self-onboarding path for this channel.

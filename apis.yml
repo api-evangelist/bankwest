@@ -52,6 +52,32 @@ apis:
     the DSB Consumer Data Standards CDS-AU/v1 banking schema; GET /banking/products and
     GET /banking/products/{productId} require the x-v version header (v4 and v5 supported).
 common:
+- type: DomainSecurity
+  url: security/bankwest-domain-security.yml
+- type: AgenticAccess
+  url: agentic-access/bankwest-agentic-access.yml
+- type: Authentication
+  url: authentication/bankwest-authentication.yml
+- type: Conventions
+  url: conventions/bankwest-conventions.yml
+- type: ErrorCatalog
+  url: errors/bankwest-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/bankwest-lifecycle.yml
+- type: StatusPage
+  url: https://www.bankwest.com.au/support/payments/payment-services-availability
+- type: Conformance
+  url: conformance/bankwest-conformance.yml
+- type: DataModel
+  url: data-model/bankwest-data-model.yml
+- type: MCPServer
+  url: mcp/bankwest-mcp.yml
+- type: Overlay
+  url: overlays/bankwest-cds-banking-products-overlay.yaml
+- type: LLMsTxt
+  url: llms/bankwest-llms.txt
+- type: AgentSkill
+  url: skills/_index.yml
 - type: Website
   url: https://www.bankwest.com.au/
 - type: DeveloperPortal

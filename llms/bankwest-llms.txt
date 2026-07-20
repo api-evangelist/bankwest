@@ -1,0 +1,30 @@
+# Bankwest
+
+> Bankwest is an Australian retail and business bank (a wholly owned subsidiary of Commonwealth Bank of Australia) operating as a CDR / Open Banking data holder. It exposes a public, unauthenticated Consumer Data Right Product Reference Data (PRD) API returning the features, rates, fees and eligibility for its publicly offered banking products. Consumer (customer) data beyond PRD requires ACCC accreditation and customer consent on the FAPI 2.0 / OIDC channel and is not publicly callable.
+
+## APIs
+
+- [Bankwest CDR Product Reference Data API](https://www.bankwest.com.au/support/open-banking/developers): Public PRD API — GET /banking/products and GET /banking/products/{productId}. Base URL https://open-api.bankwest.com.au/bwpublic/cds-au/v1. Requires the x-v version header (4 and 5 supported). Confirmed live: 19 products.
+
+## Specs
+
+- [OpenAPI (CDS-AU Banking)](openapi/bankwest-cds-banking-products-openapi.yml): Shared DSB Consumer Data Standards CDR Banking API 3.0.3 (v1.36.0). Bankwest implements the two Banking Products operations.
+- [OpenAPI Overlay](overlays/bankwest-cds-banking-products-overlay.yaml): API Evangelist enhancements marking the live production server and implemented operations.
+
+## Artifacts
+
+- [Authentication](authentication/bankwest-authentication.yml): PRD is public/no-auth; consumer channel is OAuth2/OIDC + FAPI 2.0 (accredited only).
+- [Conventions](conventions/bankwest-conventions.yml): x-v version negotiation, page/page-size pagination, x-fapi-interaction-id correlation, CDS-AU error envelope.
+- [Error catalog](errors/bankwest-problem-types.yml): CDS-AU urn:au-cds:error codes (400/404/406/422).
+- [Lifecycle](lifecycle/bankwest-lifecycle.yml): version headers, payments services availability page.
+- [Conformance](conformance/bankwest-conformance.yml): CDS-AU Banking, CDR, FAPI 2.0 (consumer channel).
+- [Data model](data-model/bankwest-data-model.yml): BankingProduct aggregate and nested rate/fee/feature entities.
+- [Agentic access](agentic-access/bankwest-agentic-access.yml): recommended x-agentic-access contracts.
+- [MCP server (candidate)](mcp/bankwest-mcp.yml): candidate read-only product tools.
+- [Agent skills](skills/_index.yml): packaged flows for listing and inspecting products.
+
+## Docs
+
+- [Open Banking developers page](https://www.bankwest.com.au/support/open-banking/developers)
+- [DSB Consumer Data Standards](https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-apis)
+- [Payments services availability](https://www.bankwest.com.au/support/payments/payment-services-availability)

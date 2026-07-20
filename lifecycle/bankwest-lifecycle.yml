@@ -1,0 +1,32 @@
+generated: '2026-07-20'
+method: searched
+source: openapi/bankwest-cds-banking-products-openapi.yml + Bankwest support site
+versioning:
+  scheme: header
+  header: x-v
+  current: '5'
+  supported: ['4', '5']
+  detail: >-
+    Per-endpoint payload versioning via the x-v request header (x-min-v floor).
+    listBankingProducts is at x-version 5; getBankingProductDetail at x-version 7.
+    Older payload versions (v1-v4 products, v1-v6 product detail) are marked
+    obsolete in the DSB standard and negotiated out via the version headers.
+  docs: https://consumerdatastandardsaustralia.github.io/standards/#versioning
+deprecation:
+  mechanism: version-negotiation
+  detail: >-
+    No Bankwest-published deprecation-policy page. Version retirement is governed
+    by the DSB Consumer Data Standards release cycle: obsolete payload versions
+    are declared in the standard and a client requesting only unsupported
+    versions receives HTTP 406 (Header/UnsupportedVersion). No RFC 8594
+    Sunset/Deprecation response headers are documented on the public PRD surface.
+  sunset_header: false
+sla:
+  url: null
+  detail: No published SLA / uptime target for the public PRD endpoint.
+status_page: https://www.bankwest.com.au/support/payments/payment-services-availability
+status_page_detail: >-
+  Bankwest publishes a Payments Services Availability & Outages page (current
+  status plus a historical outages record). It is a bank-services availability
+  page rather than a dedicated API status dashboard.
+deprecated_operations: []
