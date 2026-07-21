@@ -1,0 +1,69 @@
+generated: '2026-07-21'
+method: searched
+source: openapi/bankwest-cds-banking-products-openapi.yml (x-scopes) + DSB Consumer Data Standards security profile
+docs: https://consumerdatastandardsaustralia.github.io/standards/#authorisation-scopes
+note: >-
+  The public Product Reference Data (Get Products / Get Product Detail) endpoints
+  Bankwest exposes are unauthenticated and carry NO scope. The consumer-authorised
+  CDR Banking endpoints — served over Bankwest's accredited MTLS channel and
+  callable only by ACCC-accredited Data Recipients with customer consent — are
+  gated by the standard CDR banking authorisation scopes. These scope strings are
+  declared per-operation as x-scopes in the harvested CDS-AU banking spec and are
+  defined by the DSB Consumer Data Standards, not by Bankwest. Authorisation uses
+  OAuth 2.0 / OpenID Connect under the FAPI 2.0 security profile with Pushed
+  Authorization Requests (PAR), as mandated by the Consumer Data Standards.
+schemes:
+- name: cdrConsumerAuthorisation
+  type: openIdConnect
+  profile: FAPI 2.0
+  authorization_flow: authorizationCode + PAR (pushed authorization requests)
+  source: DSB Consumer Data Standards security profile
+  note: Bankwest publishes no self-onboarding path; access requires ACCC accreditation.
+scopes:
+- scope: bank:accounts.basic:read
+  description: >-
+    Basic bank account data — list of accounts and their balances (masked account
+    numbers, product category, nickname, balance amounts). Does not include full
+    account identifiers.
+  operations:
+  - listBankingAccounts
+  - listBankingBalancesBulk
+  - listBankingBalancesSpecificAccounts
+  - getBankingBalance
+  sources: [openapi/bankwest-cds-banking-products-openapi.yml]
+- scope: bank:accounts.detail:read
+  description: >-
+    Detailed bank account data — full account detail including unmasked account
+    number/BSB, features, fees, terms and address data for a single account.
+  operations:
+  - getBankingAccountDetail
+  sources: [openapi/bankwest-cds-banking-products-openapi.yml]
+- scope: bank:transactions:read
+  description: >-
+    Transactions for authorised accounts — list and detail of account transactions
+    with amount, date and description filtering.
+  operations:
+  - listBankingTransactions
+  - getBankingTransactionDetail
+  sources: [openapi/bankwest-cds-banking-products-openapi.yml]
+- scope: bank:regular_payments:read
+  description: >-
+    Regular payments data — authorised direct debits, scheduled/recurring payments
+    and instalment plans for the customer's accounts.
+  operations:
+  - listDirectDebits
+  - listDirectDebitsBulk
+  - listDirectDebitsSpecificAccounts
+  - listScheduledPayments
+  - listScheduledPaymentsBulk
+  - listScheduledPaymentsSpecificAccounts
+  - listInstalmentPlans
+  - listInstalmentPlansBulk
+  sources: [openapi/bankwest-cds-banking-products-openapi.yml]
+- scope: bank:payees:read
+  description: >-
+    Saved payees — the customer's saved domestic, international and BPAY payees.
+  operations:
+  - listBankingPayees
+  - getBankingPayeeDetail
+  sources: [openapi/bankwest-cds-banking-products-openapi.yml]
