@@ -24,7 +24,7 @@ tags:
 - Product Reference Data
 - Digital Bank
 created: '2026-07-20'
-modified: '2026-07-20'
+modified: '2026-07-21'
 specificationVersion: '0.19'
 apis:
 - aid: bankwest:bankwest-cdr-product-reference-data-api
@@ -51,6 +51,110 @@ apis:
     home loans). Confirmed live at HTTP 200 with x-v 5 returning 19 products. Conforms to
     the DSB Consumer Data Standards CDS-AU/v1 banking schema; GET /banking/products and
     GET /banking/products/{productId} require the x-v version header (v4 and v5 supported).
+- aid: bankwest:bankwest-cdr-accounts-balances-api
+  name: Bankwest CDR Accounts & Balances API
+  tags:
+  - CDR
+  - Open Banking
+  - Accounts
+  - Balances
+  - Banking
+  - Authorized API
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.bankwest.com.au/support/open-banking/developers
+  baseURL: https://open-api.bankwest.com.au/cds-au/v1/banking/accounts
+  properties:
+  - url: https://www.bankwest.com.au/support/open-banking/developers
+    type: Documentation
+  - url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-accounts
+    type: APIReference
+  - url: openapi/bankwest-cds-banking-products-openapi.yml
+    type: OpenAPI
+  description: Consumer-authorized CDR Banking endpoints for account discovery and balances -
+    GET /banking/accounts (list accounts), GET /banking/accounts/balances (bulk balances),
+    GET /banking/accounts/{accountId}/balance (single account balance) and GET
+    /banking/accounts/{accountId} (account detail). Standardized by the DSB Consumer Data
+    Standards CDS-AU/v1 banking schema that Bankwest, as a CBA-owned ADI brand, is required to
+    implement. Unlike Product Reference Data these endpoints are NOT public - they are served
+    over the data holder's accredited MTLS base URI (not the public /bwpublic channel, which
+    returns 404 for account paths) and require an ACCC-accredited Data Recipient plus explicit
+    customer consent under the CDR authorization (ADR) model.
+- aid: bankwest:bankwest-cdr-transactions-api
+  name: Bankwest CDR Transactions API
+  tags:
+  - CDR
+  - Open Banking
+  - Transactions
+  - Banking
+  - Authorized API
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.bankwest.com.au/support/open-banking/developers
+  baseURL: https://open-api.bankwest.com.au/cds-au/v1/banking/accounts/{accountId}/transactions
+  properties:
+  - url: https://www.bankwest.com.au/support/open-banking/developers
+    type: Documentation
+  - url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-transactions
+    type: APIReference
+  - url: openapi/bankwest-cds-banking-products-openapi.yml
+    type: OpenAPI
+  description: Consumer-authorized CDR Banking transaction endpoints - GET
+    /banking/accounts/{accountId}/transactions (list transactions for an account, with date,
+    amount and text filtering) and GET /banking/accounts/{accountId}/transactions/{transactionId}
+    (transaction detail). Standardized by the DSB Consumer Data Standards CDS-AU/v1 banking
+    schema. These endpoints are not public - they run on Bankwest's accredited MTLS base URI and
+    require an ACCC-accredited Data Recipient and explicit customer consent under the CDR
+    authorization (ADR) model, not the unauthenticated Product Reference Data channel.
+- aid: bankwest:bankwest-cdr-direct-debits-scheduled-payments-api
+  name: Bankwest CDR Direct Debits & Scheduled Payments API
+  tags:
+  - CDR
+  - Open Banking
+  - Direct Debits
+  - Scheduled Payments
+  - Banking
+  - Authorized API
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.bankwest.com.au/support/open-banking/developers
+  baseURL: https://open-api.bankwest.com.au/cds-au/v1/banking/accounts/direct-debits
+  properties:
+  - url: https://www.bankwest.com.au/support/open-banking/developers
+    type: Documentation
+  - url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-direct-debits
+    type: APIReference
+  - url: openapi/bankwest-cds-banking-products-openapi.yml
+    type: OpenAPI
+  description: Consumer-authorized CDR Banking endpoints covering authorised direct debits and
+    scheduled/recurring payments - GET /banking/accounts/{accountId}/direct-debits and GET
+    /banking/accounts/direct-debits (bulk), plus GET /banking/accounts/{accountId}/payments/scheduled
+    and GET /banking/payments/scheduled (bulk). Standardized by the DSB Consumer Data Standards
+    CDS-AU/v1 banking schema. These endpoints are not public - they are served over Bankwest's
+    accredited MTLS base URI and require an ACCC-accredited Data Recipient plus explicit customer
+    consent under the CDR authorization (ADR) model.
+- aid: bankwest:bankwest-cdr-payees-api
+  name: Bankwest CDR Payees API
+  tags:
+  - CDR
+  - Open Banking
+  - Payees
+  - Banking
+  - Authorized API
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.bankwest.com.au/support/open-banking/developers
+  baseURL: https://open-api.bankwest.com.au/cds-au/v1/banking/payees
+  properties:
+  - url: https://www.bankwest.com.au/support/open-banking/developers
+    type: Documentation
+  - url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-payees
+    type: APIReference
+  - url: openapi/bankwest-cds-banking-products-openapi.yml
+    type: OpenAPI
+  description: Consumer-authorized CDR Banking payee endpoints - GET /banking/payees (list the
+    customer's saved payees) and GET /banking/payees/{payeeId} (payee detail, including domestic,
+    international and BPAY payee schemes). Standardized by the DSB Consumer Data Standards
+    CDS-AU/v1 banking schema that Bankwest is required to implement as an ADI brand. These
+    endpoints are not public - they run on Bankwest's accredited MTLS base URI and require an
+    ACCC-accredited Data Recipient plus explicit customer consent under the CDR authorization
+    (ADR) model.
 common:
 - type: DomainSecurity
   url: security/bankwest-domain-security.yml
@@ -90,6 +194,8 @@ common:
   url: https://www.linkedin.com/company/bankwest
 - type: PrivacyPolicy
   url: https://www.bankwest.com.au/legal-stuff/bankwest-privacy-statement
+- type: TermsOfService
+  url: https://www.bankwest.com.au/legal-stuff/website-terms-of-use
 - type: Support
   url: https://www.bankwest.com.au/support
 maintainers:

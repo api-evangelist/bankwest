@@ -1,3 +1,9 @@
+# PROVENANCE: Shared industry standard, not Bankwest-proprietary. This is the DSB
+# Consumer Data Standards "CDR Banking API" v1.36.0 (consumerdatastandardsaustralia.github.io/standards),
+# harvested verbatim. Every AU ADI/data-holder brand (incl. Bankwest, a CBA-owned brand)
+# implements this same surface: public Get Products / Get Product Detail, plus the
+# consumer-authorized Accounts, Balances, Transactions, Direct Debits, Scheduled Payments
+# and Payees endpoints served over the accredited MTLS channel (CDR ADR model).
 openapi: 3.0.3
 info:
   contact:
