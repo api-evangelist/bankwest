@@ -13,7 +13,19 @@ description: Bankwest is an Australian retail and business bank headquartered in
   unauthenticated Product Reference Data (PRD) API conforming to the Data Standards Body
   Consumer Data Standards; consumer data sharing beyond PRD requires ACCC accreditation
   and customer consent under the CDR authorisation model.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/bankwest.png
 tags:
 - Financial
 - Banks
@@ -27,134 +39,174 @@ created: '2026-07-20'
 modified: '2026-07-21T12:00:00Z'
 specificationVersion: '0.19'
 apis:
-- aid: bankwest:bankwest-cdr-product-reference-data-api
-  name: Bankwest CDR Product Reference Data API
-  tags:
-  - CDR
-  - Open Banking
-  - Product Reference Data
-  - Banking
-  - Public API
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+- aid: bankwest:bankwest-banking-account-balances-api
+  name: Bankwest Banking Account Balances API
+  description: Banking Account Balance endpoints
   humanURL: https://www.bankwest.com.au/support/open-banking/developers
   baseURL: https://open-api.bankwest.com.au/bwpublic/cds-au/v1/banking/products
-  properties:
-  - url: https://www.bankwest.com.au/support/open-banking/developers
-    type: Documentation
-  - url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-products
-    type: APIReference
-  - url: openapi/bankwest-cds-banking-products-openapi.yml
-    type: OpenAPI
-  description: Public, unauthenticated Product Reference Data (PRD) API returning the
-    features, rates, fees and eligibility for Bankwest's publicly offered banking products
-    (transaction and savings accounts, term deposits, credit cards, personal loans and
-    home loans). Confirmed live at HTTP 200 with x-v 5 returning 19 products. Conforms to
-    the DSB Consumer Data Standards CDS-AU/v1 banking schema; GET /banking/products and
-    GET /banking/products/{productId} require the x-v version header (v4 and v5 supported).
-- aid: bankwest:bankwest-cdr-accounts-balances-api
-  name: Bankwest CDR Accounts & Balances API
   tags:
-  - CDR
-  - Open Banking
-  - Accounts
-  - Balances
-  - Banking
-  - Authorized API
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.bankwest.com.au/support/open-banking/developers
-  baseURL: https://open-api.bankwest.com.au/cds-au/v1/banking/accounts
+  - Banking Account Balances
   properties:
-  - url: https://www.bankwest.com.au/support/open-banking/developers
-    type: Documentation
-  - url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-accounts
-    type: APIReference
-  - url: openapi/bankwest-cds-banking-products-openapi.yml
-    type: OpenAPI
-  description: Consumer-authorized CDR Banking endpoints for account discovery and balances -
-    GET /banking/accounts (list accounts), GET /banking/accounts/balances (bulk balances),
-    GET /banking/accounts/{accountId}/balance (single account balance) and GET
-    /banking/accounts/{accountId} (account detail). Standardized by the DSB Consumer Data
-    Standards CDS-AU/v1 banking schema that Bankwest, as a CBA-owned ADI brand, is required to
-    implement. Unlike Product Reference Data these endpoints are NOT public - they are served
-    over the data holder's accredited MTLS base URI (not the public /bwpublic channel, which
-    returns 404 for account paths) and require an ACCC-accredited Data Recipient plus explicit
-    customer consent under the CDR authorization (ADR) model.
-- aid: bankwest:bankwest-cdr-transactions-api
-  name: Bankwest CDR Transactions API
+  - type: OpenAPI
+    url: openapi/bankwest-banking-account-balances-api-openapi.yml
+  - type: Documentation
+    url: https://www.bankwest.com.au/support/open-banking/developers
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-products
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-accounts
+  - type: APIReference
+    url: >-
+      https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-transactions
+  - type: APIReference
+    url: >-
+      https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-direct-debits
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-payees
+- aid: bankwest:bankwest-banking-account-direct-debits-api
+  name: Bankwest Banking Account Direct Debits API
+  description: Banking Account Direct Debit endpoints
+  humanURL: https://www.bankwest.com.au/support/open-banking/developers
+  baseURL: https://open-api.bankwest.com.au/bwpublic/cds-au/v1/banking/products
   tags:
-  - CDR
-  - Open Banking
-  - Transactions
-  - Banking
-  - Authorized API
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.bankwest.com.au/support/open-banking/developers
-  baseURL: https://open-api.bankwest.com.au/cds-au/v1/banking/accounts/{accountId}/transactions
+  - Banking Account Direct Debits
   properties:
-  - url: https://www.bankwest.com.au/support/open-banking/developers
-    type: Documentation
-  - url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-transactions
-    type: APIReference
-  - url: openapi/bankwest-cds-banking-products-openapi.yml
-    type: OpenAPI
-  description: Consumer-authorized CDR Banking transaction endpoints - GET
-    /banking/accounts/{accountId}/transactions (list transactions for an account, with date,
-    amount and text filtering) and GET /banking/accounts/{accountId}/transactions/{transactionId}
-    (transaction detail). Standardized by the DSB Consumer Data Standards CDS-AU/v1 banking
-    schema. These endpoints are not public - they run on Bankwest's accredited MTLS base URI and
-    require an ACCC-accredited Data Recipient and explicit customer consent under the CDR
-    authorization (ADR) model, not the unauthenticated Product Reference Data channel.
-- aid: bankwest:bankwest-cdr-direct-debits-scheduled-payments-api
-  name: Bankwest CDR Direct Debits & Scheduled Payments API
+  - type: OpenAPI
+    url: openapi/bankwest-banking-account-direct-debits-api-openapi.yml
+  - type: Documentation
+    url: https://www.bankwest.com.au/support/open-banking/developers
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-products
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-accounts
+  - type: APIReference
+    url: >-
+      https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-transactions
+  - type: APIReference
+    url: >-
+      https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-direct-debits
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-payees
+- aid: bankwest:bankwest-banking-account-scheduled-payments-api
+  name: Bankwest Banking Account Scheduled Payments API
+  description: Banking Account Scheduled Payment endpoints
+  humanURL: https://www.bankwest.com.au/support/open-banking/developers
+  baseURL: https://open-api.bankwest.com.au/bwpublic/cds-au/v1/banking/products
   tags:
-  - CDR
-  - Open Banking
-  - Direct Debits
-  - Scheduled Payments
-  - Banking
-  - Authorized API
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.bankwest.com.au/support/open-banking/developers
-  baseURL: https://open-api.bankwest.com.au/cds-au/v1/banking/accounts/direct-debits
+  - Banking Account Scheduled Payments
   properties:
-  - url: https://www.bankwest.com.au/support/open-banking/developers
-    type: Documentation
-  - url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-direct-debits
-    type: APIReference
-  - url: openapi/bankwest-cds-banking-products-openapi.yml
-    type: OpenAPI
-  description: Consumer-authorized CDR Banking endpoints covering authorised direct debits and
-    scheduled/recurring payments - GET /banking/accounts/{accountId}/direct-debits and GET
-    /banking/accounts/direct-debits (bulk), plus GET /banking/accounts/{accountId}/payments/scheduled
-    and GET /banking/payments/scheduled (bulk). Standardized by the DSB Consumer Data Standards
-    CDS-AU/v1 banking schema. These endpoints are not public - they are served over Bankwest's
-    accredited MTLS base URI and require an ACCC-accredited Data Recipient plus explicit customer
-    consent under the CDR authorization (ADR) model.
-- aid: bankwest:bankwest-cdr-payees-api
-  name: Bankwest CDR Payees API
+  - type: OpenAPI
+    url: openapi/bankwest-banking-account-scheduled-payments-api-openapi.yml
+  - type: Documentation
+    url: https://www.bankwest.com.au/support/open-banking/developers
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-products
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-accounts
+  - type: APIReference
+    url: >-
+      https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-transactions
+  - type: APIReference
+    url: >-
+      https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-direct-debits
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-payees
+- aid: bankwest:bankwest-banking-account-transactions-api
+  name: Bankwest Banking Account Transactions API
+  description: Banking Account Transaction endpoints
+  humanURL: https://www.bankwest.com.au/support/open-banking/developers
+  baseURL: https://open-api.bankwest.com.au/bwpublic/cds-au/v1/banking/products
   tags:
-  - CDR
-  - Open Banking
-  - Payees
-  - Banking
-  - Authorized API
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.bankwest.com.au/support/open-banking/developers
-  baseURL: https://open-api.bankwest.com.au/cds-au/v1/banking/payees
+  - Banking Account Transactions
   properties:
-  - url: https://www.bankwest.com.au/support/open-banking/developers
-    type: Documentation
-  - url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-payees
-    type: APIReference
-  - url: openapi/bankwest-cds-banking-products-openapi.yml
-    type: OpenAPI
-  description: Consumer-authorized CDR Banking payee endpoints - GET /banking/payees (list the
-    customer's saved payees) and GET /banking/payees/{payeeId} (payee detail, including domestic,
-    international and BPAY payee schemes). Standardized by the DSB Consumer Data Standards
-    CDS-AU/v1 banking schema that Bankwest is required to implement as an ADI brand. These
-    endpoints are not public - they run on Bankwest's accredited MTLS base URI and require an
-    ACCC-accredited Data Recipient plus explicit customer consent under the CDR authorization
-    (ADR) model.
+  - type: OpenAPI
+    url: openapi/bankwest-banking-account-transactions-api-openapi.yml
+  - type: Documentation
+    url: https://www.bankwest.com.au/support/open-banking/developers
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-products
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-accounts
+  - type: APIReference
+    url: >-
+      https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-transactions
+  - type: APIReference
+    url: >-
+      https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-direct-debits
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-payees
+- aid: bankwest:bankwest-banking-accounts-api
+  name: Bankwest Banking Accounts API
+  description: Banking Account endpoints
+  humanURL: https://www.bankwest.com.au/support/open-banking/developers
+  baseURL: https://open-api.bankwest.com.au/bwpublic/cds-au/v1/banking/products
+  tags:
+  - Banking Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/bankwest-banking-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://www.bankwest.com.au/support/open-banking/developers
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-products
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-accounts
+  - type: APIReference
+    url: >-
+      https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-transactions
+  - type: APIReference
+    url: >-
+      https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-direct-debits
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-payees
+- aid: bankwest:bankwest-banking-payees-api
+  name: Bankwest Banking Payees API
+  description: Banking Payee endpoints
+  humanURL: https://www.bankwest.com.au/support/open-banking/developers
+  baseURL: https://open-api.bankwest.com.au/bwpublic/cds-au/v1/banking/products
+  tags:
+  - Banking Payees
+  properties:
+  - type: OpenAPI
+    url: openapi/bankwest-banking-payees-api-openapi.yml
+  - type: Documentation
+    url: https://www.bankwest.com.au/support/open-banking/developers
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-products
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-accounts
+  - type: APIReference
+    url: >-
+      https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-transactions
+  - type: APIReference
+    url: >-
+      https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-direct-debits
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-payees
+- aid: bankwest:bankwest-banking-products-api
+  name: Bankwest Banking Products API
+  description: Banking Product endpoints
+  humanURL: https://www.bankwest.com.au/support/open-banking/developers
+  baseURL: https://open-api.bankwest.com.au/bwpublic/cds-au/v1/banking/products
+  tags:
+  - Banking Products
+  properties:
+  - type: OpenAPI
+    url: openapi/bankwest-banking-products-api-openapi.yml
+  - type: Documentation
+    url: https://www.bankwest.com.au/support/open-banking/developers
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-products
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-accounts
+  - type: APIReference
+    url: >-
+      https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-transactions
+  - type: APIReference
+    url: >-
+      https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-direct-debits
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-payees
 common:
 - type: DomainSecurity
   url: security/bankwest-domain-security.yml
