@@ -1,0 +1,26 @@
+{
+  "provider": "bankwest",
+  "sources": [
+    "bankwest-banking-account-balances-api-openapi.yml",
+    "bankwest-banking-account-direct-debits-api-openapi.yml",
+    "bankwest-banking-account-scheduled-payments-api-openapi.yml",
+    "bankwest-banking-account-transactions-api-openapi.yml",
+    "bankwest-banking-accounts-api-openapi.yml",
+    "bankwest-banking-payees-api-openapi.yml",
+    "bankwest-banking-products-api-openapi.yml"
+  ],
+  "outputs": [
+    "bankwest-banking-account-balances-api-openapi.yml",
+    "bankwest-banking-account-direct-debits-api-openapi.yml",
+    "bankwest-banking-account-scheduled-payments-api-openapi.yml",
+    "bankwest-banking-account-transactions-api-openapi.yml",
+    "bankwest-banking-accounts-api-openapi.yml",
+    "bankwest-banking-payees-api-openapi.yml",
+    "bankwest-banking-products-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
