@@ -13,6 +13,18 @@ description: Bankwest is an Australian retail and business bank headquartered in
   unauthenticated Product Reference Data (PRD) API conforming to the Data Standards Body
   Consumer Data Standards; consumer data sharing beyond PRD requires ACCC accreditation
   and customer consent under the CDR authorisation model.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
