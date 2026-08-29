@@ -1,0 +1,35 @@
+slug: bankwest
+provider: Bankwest
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Banking & Capital Markets
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Banking Products
+  spec_file: bankwest-banking-products-api-openapi.yml
+  capability_id: BC-1310.10
+  capability_id_l1: BC-1310
+  capability_name: Product Catalogue Management
+  confidence: 0.9
+  evidence: GET /banking/products  Get Products; schemas BankingProductDetailV7, BankingProductFeeV2,
+    BankingProductDepositRateV2, BankingProductEligibilityV2, BankingProductCategoryV2
+  reason: Publishes the bank's product catalogue with categories, rates, fees, constraints and eligibility
+    — banking product catalogue/master data.
+- tag: Banking Account Scheduled Payments
+  spec_file: bankwest-banking-account-scheduled-payments-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
+  confidence: 0.75
+  evidence: GET /banking/accounts/{accountId}/payments/scheduled  Get Scheduled Payments for Account;
+    schemas BankingScheduledPaymentV2, BankingScheduledPaymentRecurrence, BankingDomesticPayee, BankingInstalmentPlan
+  reason: Operations expose scheduled/recurring payment instructions, their recurrence rules and payee
+    targets — payment instruction capture and authorisation for a bank's accounts.
