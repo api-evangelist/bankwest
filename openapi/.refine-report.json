@@ -1,13 +1,7 @@
 {
   "provider": "bankwest",
   "sources": [
-    "bankwest-banking-account-balances-api-openapi.yml",
-    "bankwest-banking-account-direct-debits-api-openapi.yml",
-    "bankwest-banking-account-scheduled-payments-api-openapi.yml",
-    "bankwest-banking-account-transactions-api-openapi.yml",
-    "bankwest-banking-accounts-api-openapi.yml",
-    "bankwest-banking-payees-api-openapi.yml",
-    "bankwest-banking-products-api-openapi.yml"
+    "_original/bankwest-cds-banking-products-openapi.yml"
   ],
   "outputs": [
     "bankwest-banking-account-balances-api-openapi.yml",
@@ -21,6 +15,18 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "bankwest-cds-banking-products-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "bankwest-banking-account-balances-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bankwest-banking-account-direct-debits-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bankwest-banking-account-scheduled-payments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bankwest-banking-account-transactions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bankwest-banking-accounts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bankwest-banking-payees-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bankwest-banking-products-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
