@@ -1,0 +1,16 @@
+generated: '2026-10-12'
+method: none
+source:
+- https://zapier.com/apps/bankwest/integrations
+- https://n8n.io/integrations/bankwest/
+- https://composio.dev/toolkits/bankwest
+- https://monid.ai/tools/bankwest
+checked:
+- https://composio.dev/toolkits/bankwest
+- https://monid.ai/tools/bankwest
+- https://n8n.io/integrations/bankwest/
+- https://zapier.com/apps/bankwest/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []
