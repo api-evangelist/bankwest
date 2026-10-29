@@ -1,4 +1,4 @@
-# Bankwest (bankwest)
+# Bankwest
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,60 +64,132 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Bankwest is an Australian retail and business bank headquartered in Perth, Western Australia. Founded in 1895 as the Agricultural Bank of Western Australia (later the Bank of Western Australia), it has been a wholly owned subsidiary of Commonwealth Bank of Australia (CBA) since December 2008. In March 2024 Bankwest announced it would close its remaining branches and operate as a digital-only bank under the Bankwest brand. Under Australia's Consumer Data Right (CDR / Open Banking) regime, Bankwest exposes a public, unauthenticated Product Reference Data (PRD) API conforming to the Data Standards Body Consumer Data Standards.
+Bankwest is an Australian retail and business bank headquartered in Perth, Western Australia. Founded in 1895 as the Agricultural Bank of Western Australia and later the Bank of Western Australia, it has operated as a wholly owned subsidiary of Commonwealth Bank of Australia (CBA) since CBA's December 2008 acquisition. In March 2024 Bankwest announced it would close its remaining branch network and become a digital-only bank, retaining the Bankwest brand for personal and business customers nationally. As an authorised deposit-taking institution brand operating under Australia's Consumer Data Right (CDR / Open Banking) regime, Bankwest exposes a public, unauthenticated Product Reference Data (PRD) API conforming to the Data Standards Body Consumer Data Standards; consumer data sharing beyond PRD requires ACCC accreditation and customer consent under the CDR authorisation model.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/bankwest/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/bankwest/refs/heads/main/apis.yml)
+**Areas:** Finance · Banks · Open Banking · CDR · Consumer Banking · Australia · Product Reference Data · Digital Bank
 
-## Tags
+## Bankwest on APIs.io
 
-- Financial
-- Banks
-- Open Banking
-- CDR
-- Consumer Banking
-- Australia
-- Product Reference Data
-- Digital Bank
+Everything profiled for Bankwest is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/bankwest/](https://apis.io/providers/bankwest/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (7)
 
-- **Created:** 2026-07-20
-- **Modified:** 2026-07-20
+- [Bankwest Banking Account Balances API](https://apis.io/apis/bankwest/bankwest-banking-account-balances-api/) — Banking Account Balance endpoints
+- [Bankwest Banking Account Direct Debits API](https://apis.io/apis/bankwest/bankwest-banking-account-direct-debits-api/) — Banking Account Direct Debit endpoints
+- [Bankwest Banking Account Scheduled Payments API](https://apis.io/apis/bankwest/bankwest-banking-account-scheduled-payments-api/) — Banking Account Scheduled Payment endpoints
+- [Bankwest Banking Account Transactions API](https://apis.io/apis/bankwest/bankwest-banking-account-transactions-api/) — Banking Account Transaction endpoints
+- [Bankwest Banking Accounts API](https://apis.io/apis/bankwest/bankwest-banking-accounts-api/) — Banking Account endpoints
+- [Bankwest Banking Payees API](https://apis.io/apis/bankwest/bankwest-banking-payees-api/) — Banking Payee endpoints
+- [Bankwest Banking Products API](https://apis.io/apis/bankwest/bankwest-banking-products-api/) — Banking Product endpoints
 
-## APIs
+### Published properties
 
-### Bankwest CDR Product Reference Data API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Public, unauthenticated Product Reference Data (PRD) API returning the features, rates, fees and eligibility for Bankwest's publicly offered banking products (transaction and savings accounts, term deposits, credit cards, personal loans and home loans). Confirmed live at HTTP 200 with `x-v: 5`, returning 19 products. Conforms to the DSB Consumer Data Standards CDS-AU/v1 banking schema; `GET /banking/products` and `GET /banking/products/{productId}` require the `x-v` version header (v4 and v5 supported).
+#### MCP servers (1)
 
-- **Human URL:** [https://www.bankwest.com.au/support/open-banking/developers](https://www.bankwest.com.au/support/open-banking/developers)
-- **Base URL:** `https://open-api.bankwest.com.au/bwpublic/cds-au/v1/banking/products`
+Model Context Protocol servers that expose the API to agents.
 
-#### Tags
+- [bankwest-cdr-products](https://apis.io/servers/bankwest/bankwest-cdr-products/)
 
-- CDR
-- Open Banking
-- Product Reference Data
-- Banking
-- Public API
+#### Agentic access (1)
 
-#### Properties
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- [Documentation](https://www.bankwest.com.au/support/open-banking/developers)
-- [API Reference](https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-products)
-- [OpenAPI](openapi/bankwest-cds-banking-products-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Bankwest Agentic Access](https://apis.io/agentic-access/bankwest/bankwest-agentic-access/)
 
-## Common Properties
+#### Collections (7)
+
+Postman and Open Collection request collections.
+
+- [CDR Banking Banking Account Balances API](https://apis.io/collections/bankwest/open-bankwest-banking-account-balances-api/)
+- [CDR Banking Banking Account Balances Banking Account Direct Debits API](https://apis.io/collections/bankwest/open-bankwest-banking-account-direct-debits-api/)
+- [CDR Banking Banking Account Balances Banking Account Scheduled Payments API](https://apis.io/collections/bankwest/open-bankwest-banking-account-scheduled-payments-api/)
+- [CDR Banking Banking Account Balances Banking Account Transactions API](https://apis.io/collections/bankwest/open-bankwest-banking-account-transactions-api/)
+- [CDR Banking Banking Account Balances Banking Accounts API](https://apis.io/collections/bankwest/open-bankwest-banking-accounts-api/)
+- [CDR Banking Banking Account Balances Banking Payees API](https://apis.io/collections/bankwest/open-bankwest-banking-payees-api/)
+- [CDR Banking Banking Account Balances Banking Products API](https://apis.io/collections/bankwest/open-bankwest-banking-products-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Bankwest Cds Banking Products Overlay](https://apis.io/overlays/bankwest/bankwest-cds-banking-products-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Bankwest Authentication](https://apis.io/security/bankwest/bankwest-authentication/)
+- [Bankwest Domain Security](https://apis.io/security/bankwest/bankwest-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Bankwest Scopes](https://apis.io/scopes/bankwest/bankwest-scopes/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.bankwest.com.au/)
-- [Developer Portal](https://www.bankwest.com.au/support/open-banking/developers)
 - [Documentation](https://www.bankwest.com.au/support/open-banking)
-- [API Reference](https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-apis)
-- [LinkedIn](https://www.linkedin.com/company/bankwest)
-- [Privacy Policy](https://www.bankwest.com.au/legal-stuff/bankwest-privacy-statement)
+- [API reference](https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-apis)
 - [Support](https://www.bankwest.com.au/support)
+- [Terms of service](https://www.bankwest.com.au/legal-stuff/website-terms-of-use)
+- [Privacy policy](https://www.bankwest.com.au/legal-stuff/bankwest-privacy-statement)
+- [Status](https://www.bankwest.com.au/support/payments/payment-services-availability)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 35.4** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 44.7 |
+| Contract governance | 4.5 |
+| Operational transparency | 15.8 |
+| Developer ergonomics | 44.6 |
+| Access clarity | 21.1 |
+
+**Agent readiness 23.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 33.1** — Banking & Open Finance
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/bankwest/](https://apis.io/providers/bankwest/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Bankwest: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/bankwest/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
